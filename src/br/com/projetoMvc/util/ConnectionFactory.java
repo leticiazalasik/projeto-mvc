@@ -11,8 +11,8 @@ public class ConnectionFactory {
 																				  //vai se localizar localhost que é o local a porta do banco onde está sendo 
 																				// executado  e db_adas é o nome da base de dados 
 
-	public static final String USER = "postgre"; // o nome do usuario
-	public static final String PASSWORD = "postgre"; // e a senha para conectar java e banco
+	public static final String USER = "postgres"; // o nome do usuario
+	public static final String PASSWORD = "2149"; // e a senha para conectar java e banco
 
 	/** 
 	 * Método responsavel por abrir conexão com banco 
