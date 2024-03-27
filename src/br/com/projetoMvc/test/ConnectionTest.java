@@ -19,6 +19,7 @@ public class ConnectionTest {
 			connection.close(); 
 		} catch (Exception e) {
 			System.out.println("Erro ao conectar: " + e.getMessage());
+			e.printStackTrace();
 			
 		}
 	}
