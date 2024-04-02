@@ -15,17 +15,17 @@ public class Main {
 
 		ProdutoController controller = new ProdutoController(); 
 		
+		//Cadastrar 
+		
+				Produto novoProduto = new Produto(); 
+				novoProduto.setDescricao(JOptionPane.showInputDialog("Descricao do produto: "));
+				controller.cadastrar(novoProduto);
+					
+		//Listar 
 		List <Produto>lista = new ArrayList<Produto>(); 
 		lista = controller.listarTodos();
 		
-//		System.out.println("- Lista de produtos - ");
-
-//		for (Produto produto : lista) {
-//			System.out.print(produto.getId());
-//			System.out.print("-");
-//			System.out.println(produto.getDescricao());
-//		}
-//				
+			
 		String mensagemLista=" "
 		.concat("-Lista Produtos-")
 		.concat("\n")
@@ -41,6 +41,6 @@ public class Main {
 		}
 		JOptionPane.showMessageDialog(null, mensagemLista);
 		
+		
 	}
-
 }

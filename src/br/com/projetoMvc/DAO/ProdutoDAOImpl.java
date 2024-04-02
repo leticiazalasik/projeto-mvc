@@ -66,8 +66,27 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public Boolean cadastrar(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+	Produto produto = (Produto) object; 
+	PreparedStatement stmt =null; // Para executar consultas parametrizadas. 
+	String sql = "INSERT INTO produto (descricao) " + "VALUES (?)"; // esse ponto de interrogacao será inserido depois e substituido. depois do descricao eu poderia colocar , mais coisas e no ponto de interrogacao mais coisas 
+	
+	try { 
+		stmt =conn.prepareStatement(sql); //atribuído à variável "stmt" um objeto PreparedStatement criado a partir da conexão "conn" e da string "sql". Isso indica que uma consulta parametrizada está sendo preparada para execução no banco de dados.
+		stmt.setString(1, produto.getDescricao()); //1 equivale ao primeiro ponto de interrogacao e o pdouto,getDescricao é o que vai ser colocado no lugar do ponto de interrogaçao.  Aqui está sendo definido o valor do primeiro parâmetro da consulta preparada. O método setString está sendo usado para atribuir a descrição do produto (provavelmente obtida do objeto "produto") ao primeiro parâmetro da consulta.
+		stmt.execute(); // só executa sem um retorno execute query porque nao precis mostrar resultados de volta 
+		return true; 
+	} catch (SQLException ex) {
+		System.out.println("problemas na DAO ao cadastrar Produto! Erro: " + ex.getMessage());
+		ex.printStackTrace();
+		return false; //se nao conseguiu cadastrar retorna false 
+	} finally { 
+		try { 
+			ConnectionFactory.closeConnection(conn, stmt);
+		} catch (Exception ex) { 
+			System.out.println("Problemas ao fechar conexão! Erro: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
 	}
 
 	@Override
