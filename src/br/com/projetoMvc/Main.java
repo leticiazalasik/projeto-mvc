@@ -21,10 +21,11 @@ public class Main {
 		String menu=" "
 				.concat("-Opcoes- \n")
 				.concat("[1] Cadastrar\n")
-				.concat("[2] Listar\n")
-				.concat("[3] Excluir\n")
-				.concat("[4] Editar\n")
-				.concat("[5] Finalizar\n")
+				.concat("[2] Listar Todos\n")
+				.concat("[3] Listar por ID\n")
+				.concat("[4] Excluir\n")
+				.concat("[5] Editar\n")
+				.concat("[6] Finalizar\n")
 				.concat("Digite a opção desejada: \n");
 		
 			String option = JOptionPane.showInputDialog(menu);
@@ -67,14 +68,32 @@ public class Main {
 				break; 
 				
 			case 3: 
+				Produto produtoEncontrado = controller.listarPorId(3);
+
+				String mensagemLista2=" "
+				.concat("Id: ") 
+				.concat(String.valueOf(produtoEncontrado.getId())) //concat só recebe string entao preciso converter 
+				.concat("\n")
+				.concat("Descrição: ")
+				.concat(produtoEncontrado.getDescricao()); 
+
+				if (produtoEncontrado != null) {
+					JOptionPane.showMessageDialog(null, mensagemLista2);
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Não existe produto com esse código na lista");
+				}
+				break; 
+				
+			case 4: 
 				JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
 				break; 
 	
-			case 4: 
+			case 5: 
 				JOptionPane.showMessageDialog(null, "Editado com sucesso!");
 				break; 
 				
-			case 5: 
+			case 6: 
 				JOptionPane.showMessageDialog(null, "Sistema finalizado!");
 				break; 
 	
@@ -83,7 +102,7 @@ public class Main {
 					
 					break; 
 			}
-		if (optionInt!=5) {
+		if (optionInt!=6) {
 		option = JOptionPane.showInputDialog(menu);
 		optionInt = Integer.parseInt(option);
 		} else { 

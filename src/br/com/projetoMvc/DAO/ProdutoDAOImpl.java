@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import br.com.projetoMvc.model.Produto;
 import br.com.projetoMvc.util.ConnectionFactory;
 
@@ -60,9 +62,40 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public Object listarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+			
+			PreparedStatement stmt =null;  //Objeto criado 
+			Object produto = null;
+
+
+			
+			String sql = "SELECT * FROM produto WHERE id=" + "(?)"; //Var para armazenar o select que vais er executado no banco 
+			
+			try { 
+				stmt =conn.prepareStatement(sql); 
+			stmt.setInt(1, id); 
+			stmt.execute();  
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+	         produto = new Produto(rs.getInt("id"), rs.getString("descricao"));
+	        }
+
+
+		JOptionPane.showMessageDialog(null, "Produto localizado!");
+
+				} catch (SQLException ex) {
+				System.out.println("Problemas na DAO ao listar produto! Erro:" + ex.getMessage());
+				ex.printStackTrace();
+			} finally { 
+				try { 
+					ConnectionFactory.closeConnection(conn, stmt);
+				} catch (Exception ex) { 
+					System.out.println("Problemas ao fechar conexão! Erro:" + ex.getMessage());
+				}
+			}
+			
+			return produto; 
+		}
 
 	@Override
 	public Boolean cadastrar(Object object) {
@@ -97,8 +130,33 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public void excluir(int id) {
-		// TODO Auto-generated method stub
+//
+//			PreparedStatement stmt =null;  //Objeto criado 
+//			
+//			String sql = "DELETE FROM produto WHERE id=" + "(?)"; 
+//			
+//			try { 
+//				stmt =conn.prepareStatement(sql); 
+//				stmt.setInt(1, id); 
+//				stmt.execute();  
+//				
+		JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+
 		
+//			} catch (SQLException ex) {
+//				System.out.println("problemas na DAO ao excluir Produto! Erro: " + ex.getMessage());
+//				ex.printStackTrace();
+//				
+//			} finally { 
+//				try { 
+//					ConnectionFactory.closeConnection(conn, stmt);
+//				} catch (Exception ex) { 
+//					System.out.println("Problemas ao fechar conexão! Erro: " + ex.getMessage());
+//					ex.printStackTrace();
+//				}
+//			}
+//		
+//		
 	}
 
 }
