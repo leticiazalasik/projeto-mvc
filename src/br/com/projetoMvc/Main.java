@@ -12,11 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-
-//		System.out.println("-- Opções -- \n [1] Cadastrar\n [2] Listar \n [3] Excluir\n [4] Editar" );
-//		String option = JOptionPane.showInputDialog("Digite a opção desejada: ");
-//		int optionInt = Integer.parseInt(option);
+	
 		
 		String menu=" "
 				.concat("-Opcoes- \n")
