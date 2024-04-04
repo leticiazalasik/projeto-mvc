@@ -130,33 +130,31 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public void excluir(int id) {
-//
-//			PreparedStatement stmt =null;  //Objeto criado 
-//			
-//			String sql = "DELETE FROM produto WHERE id=" + "(?)"; 
-//			
-//			try { 
-//				stmt =conn.prepareStatement(sql); 
-//				stmt.setInt(1, id); 
-//				stmt.execute();  
-//				
-		JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
 
+			PreparedStatement stmt =null;  //Objeto criado 
+			
+			String sql = "DELETE FROM produto WHERE id= "+ "(?)"; 
+			
+			try { 
+				stmt =conn.prepareStatement(sql); 
+				stmt.setInt(1, id); 
+				stmt.execute();  
+				
 		
-//			} catch (SQLException ex) {
-//				System.out.println("problemas na DAO ao excluir Produto! Erro: " + ex.getMessage());
-//				ex.printStackTrace();
-//				
-//			} finally { 
-//				try { 
-//					ConnectionFactory.closeConnection(conn, stmt);
-//				} catch (Exception ex) { 
-//					System.out.println("Problemas ao fechar conexão! Erro: " + ex.getMessage());
-//					ex.printStackTrace();
-//				}
-//			}
-//		
-//		
+			} catch (SQLException ex) {
+				System.out.println("problemas na DAO ao excluir Produto! Erro: " + ex.getMessage());
+				ex.printStackTrace();
+				
+			} finally { 
+				try { 
+					ConnectionFactory.closeConnection(conn, stmt);
+				} catch (Exception ex) { 
+					System.out.println("Problemas ao fechar conexão! Erro: " + ex.getMessage());
+					ex.printStackTrace();
+				}
+			}
+		
+		
 	}
 
 }

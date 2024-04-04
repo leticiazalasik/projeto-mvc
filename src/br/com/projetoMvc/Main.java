@@ -68,7 +68,12 @@ public class Main {
 				break; 
 				
 			case 3: 
-				Produto produtoEncontrado = controller.listarPorId(3);
+				
+				
+				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o id: ")); 
+								
+				Produto produtoEncontrado = controller.listarPorId(opcao);
+
 
 				String mensagemLista2=" "
 				.concat("Id: ") 
@@ -86,7 +91,11 @@ public class Main {
 				break; 
 				
 			case 4: 
-				JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+				opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o id: ")); 
+				
+				controller.excluir(opcao);
+
+
 				break; 
 	
 			case 5: 
