@@ -99,7 +99,9 @@ public class Main {
 				break; 
 	
 			case 5: 
-				JOptionPane.showMessageDialog(null, "Editado com sucesso!");
+				opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o id: ")); 
+				
+				controller.alterar(controller.listarPorId(opcao));
 				break; 
 				
 			case 6: 

@@ -87,4 +87,21 @@ public void excluir(int id ){ //método para cadastrar produto
 	
 }
 }
+
+public boolean alterar (Object object){ //método para cadastrar produto 
+
+try {  
+	GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
+
+dao.alterar(object);
+		
+	return true;
+	
+} catch (Exception e) {  //Se der erro faz isso 
+	System.out.println("Erro ao controller ao Excluir produto Produto.");
+	e.printStackTrace();
+	return false; 
+
+}
+}
 }
