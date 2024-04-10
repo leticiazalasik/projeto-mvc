@@ -36,20 +36,17 @@ public class ProdutoController {
 public Produto listarPorId(int id){ //método que retorna uma lista de objetos do tipo produto 
 
 		try {  
-			GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
-			Object obj = dao.listarPorId(id);
-			if (obj instanceof Produto) {
-	            produto = (Produto) obj; 
-	           
-	
-			}
+			GenericDAO dao = new ProdutoDAOImpl(); //instância de ProdutoDAOImpl, que implementa a interface GenericDAO, é criada e atribuída à variável dao. polimorfismo para tratar um objeto concreto (ProdutoDAOImpl) como se fosse do tipo genérico (GenericDAO).
+
+			Produto produto = (Produto) dao.listarPorId(id);  //Aqui estamos chamando o método listarPorId do objeto dao, que deveria retornar um objeto do tipo Produto. O resultado dessa chamada é armazenado na variável produto. 			
+			return produto; 
 			
 		} catch (Exception e) {  //Se der erro faz isso 
 			System.out.println("Erro na controller ao listar Produto.");
 			e.printStackTrace();
+			return null; 
 		}
 		
-		return produto; 
 	}
 
 
@@ -71,7 +68,7 @@ public void cadastrar(Produto produto){ //método para cadastrar produto
 		
 	}
 
-public void excluir(int id ){ //método para cadastrar produto 
+public boolean excluir(int id ){ //método para cadastrar produto 
 	
 	try {  
 		GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
@@ -80,10 +77,12 @@ public void excluir(int id ){ //método para cadastrar produto
 		
 		JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
 		
+		return true; 
 		
 	} catch (Exception e) {  //Se der erro faz isso 
 		System.out.println("Erro ao controller ao Excluir produto Produto.");
 		e.printStackTrace();
+		return false; 
 	
 }
 }

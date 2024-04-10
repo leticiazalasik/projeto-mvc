@@ -63,32 +63,31 @@ public class ProdutoDAOImpl implements GenericDAO {
 	@Override
 	public Object listarPorId(int id) {
 			
-			PreparedStatement stmt =null;  //Objeto criado 
-			Object produto = null;
-
-
+			PreparedStatement stmt =null;  //Objeto criado,  usado quando precisamos executar comandos SQL pré-compilados e obter o resultado produzido.
+			Produto produto = null; //objeto produto
+			ResultSet rs =null; //objeto que representa um conjunto de dados recuperados de uma base de dados após a execução de uma consulta SQL. 
+			
 			
 			String sql = "SELECT * FROM produto WHERE id=" + "(?)"; //Var para armazenar o select que vais er executado no banco 
 			
 			try { 
-				stmt =conn.prepareStatement(sql); 
-			stmt.setInt(1, id); 
-			stmt.execute();  
-			ResultSet rs = stmt.executeQuery();
+				stmt =conn.prepareStatement(sql); //converter string em sql 
+			stmt.setInt(1, id); // define o valor do primeiro parâmetro (índice 1) na consulta. O valor é o id fornecido.
+			stmt.executeQuery(); // executa a consulta preparada no banco de dados, mas o resultado da execução não está sendo armazenado.
+			rs = stmt.executeQuery(); //a consulta preparada é executada novamente e o resultado é armazenado em um objeto do tipo ResultSet chamado rs. O ResultSet contém os resultados da consulta realizada.
 			
-			if (rs.next()) {
-	         produto = new Produto(rs.getInt("id"), rs.getString("descricao"));
+			if (rs.next()) { //resultado (ou seja, rs.next() retorna true):
+	         produto = new Produto(rs.getInt("id"), rs.getString("descricao")); //produto recebe valores das colunas “id” e “descricao” obtidos do ResultSet.
+	 		JOptionPane.showMessageDialog(null, "Produto localizado!");
+
 	        }
-
-
-		JOptionPane.showMessageDialog(null, "Produto localizado!");
 
 				} catch (SQLException ex) {
 				System.out.println("Problemas na DAO ao listar produto! Erro:" + ex.getMessage());
 				ex.printStackTrace();
 			} finally { 
 				try { 
-					ConnectionFactory.closeConnection(conn, stmt);
+					ConnectionFactory.closeConnection(conn, stmt, rs); 
 				} catch (Exception ex) { 
 					System.out.println("Problemas ao fechar conexão! Erro:" + ex.getMessage());
 				}
@@ -163,14 +162,14 @@ public class ProdutoDAOImpl implements GenericDAO {
 	@Override
 	public void excluir(int id) {
 
-			PreparedStatement stmt =null;  //Objeto criado 
+			PreparedStatement stmt =null;  //Objeto criado,  usado quando precisamos executar comandos SQL pré-compilados e obter o resultado produzido.
 			
 			String sql = "DELETE FROM produto WHERE id= "+ "(?)"; 
 			
 			try { 
-				stmt =conn.prepareStatement(sql); 
-				stmt.setInt(1, id); 
-				stmt.execute();  
+				stmt =conn.prepareStatement(sql); //converter string em sql 
+				stmt.setInt(1, id);  // define o valor do primeiro parâmetro (índice 1) na consulta. O valor é o id fornecido.
+				stmt.executeUpdate(); //O método executeUpdate() é usado para executar comandos SQL que alteram os dados no banco de dados.
 				
 		
 			} catch (SQLException ex) {
@@ -188,5 +187,4 @@ public class ProdutoDAOImpl implements GenericDAO {
 		
 		
 	}
-
 }

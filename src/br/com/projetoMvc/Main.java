@@ -64,26 +64,25 @@ public class Main {
 				break; 
 				
 			case 3: 
-				
+			//Listar por id	
 				
 				int opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o id: ")); 
 								
 				Produto produtoEncontrado = controller.listarPorId(opcao);
 
-
-				String mensagemLista2=" "
-				.concat("Id: ") 
-				.concat(String.valueOf(produtoEncontrado.getId())) //concat só recebe string entao preciso converter 
-				.concat("\n")
-				.concat("Descrição: ")
-				.concat(produtoEncontrado.getDescricao()); 
-
 				if (produtoEncontrado != null) {
+					String mensagemLista2=" "
+							.concat("Id: ") 
+							.concat(String.valueOf(produtoEncontrado.getId())) //concat só recebe string entao preciso converter 
+							.concat("\n")
+							.concat("Descrição: ")
+							.concat(produtoEncontrado.getDescricao()); 
+					
 					JOptionPane.showMessageDialog(null, mensagemLista2);
-
 				} else {
 					JOptionPane.showMessageDialog(null, "Não existe produto com esse código na lista");
 				}
+				
 				break; 
 				
 			case 4: 
