@@ -78,6 +78,8 @@ public boolean excluir(int id ){ //método para cadastrar produto
 		if (produto==null) { 
 			return false; 
 		}
+		
+		dao = new ProdutoDAOImpl(); 
 	dao.excluir(id);
 				
 		return true; 
