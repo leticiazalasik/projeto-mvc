@@ -1,10 +1,15 @@
 # Projeto-mvc
 
 Repositório criado com o objetivo de praticar a conexão JAVA com banco de dados. Métodos feitos baseados no CRUD: 
+
 ▪️ listarTodos
+
 ▪️ listarPorId
+
 ▪️ cadastrar
+
 ▪️ ecxluir
+
 ▪️ alterar 
 
 
