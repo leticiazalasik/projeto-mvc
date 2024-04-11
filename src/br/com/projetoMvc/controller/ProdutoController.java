@@ -73,10 +73,13 @@ public boolean excluir(int id ){ //método para cadastrar produto
 	try {  
 		GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
 	
+		Produto produto = (Produto) dao.listarPorId(id);
+		
+		if (produto==null) { 
+			return false; 
+		}
 	dao.excluir(id);
-		
-		JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
-		
+				
 		return true; 
 		
 	} catch (Exception e) {  //Se der erro faz isso 
