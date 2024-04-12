@@ -120,7 +120,6 @@ public class Main {
 	
 				default: 
 					JOptionPane.showMessageDialog(null, "Opção inexistente \n Tente novamente!");
-					
 					break; 
 			}
 		if (optionInt!=6) {
