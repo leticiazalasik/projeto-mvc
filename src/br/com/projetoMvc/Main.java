@@ -31,6 +31,7 @@ public class Main {
 		ProdutoController controller = new ProdutoController(); 
 
 		while (optionInt!=0) {
+		int idModificar;
 		switch (optionInt){
 		
 		case 1: 
@@ -102,9 +103,15 @@ public class Main {
 				break; 
 	
 			case 5: 
-				opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o id: ")); 
+				//Alterar 
+				idModificar = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do produto a ser modificado: ")); 
+				String  novaDescricao = JOptionPane.showInputDialog("Digite a nova descrição: "); 
+
+				Produto produtoEditado = new Produto(); 
+				produtoEditado.setId(idModificar);
+				produtoEditado.setDescricao(novaDescricao);
 				
-				controller.alterar(controller.listarPorId(opcao));
+				controller.alterar(produtoEditado);
 				break; 
 				
 			case 6: 

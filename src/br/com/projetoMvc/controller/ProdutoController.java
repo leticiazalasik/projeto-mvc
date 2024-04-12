@@ -71,41 +71,69 @@ public void cadastrar(Produto produto){ //método para cadastrar produto
 public boolean excluir(int id ){ //método para cadastrar produto 
 	
 	try {  
-		GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
-	
-		Produto produto = (Produto) dao.listarPorId(id);
-		
-		if (produto==null) { 
-			return false; 
-		}
-		
-		dao = new ProdutoDAOImpl(); 
-	dao.excluir(id);
+		GenericDAO dao = new ProdutoDAOImpl(); 
+		if (validarId(produto.getId())==false) {
 				
+		return false; 
+		} 
+		
+		dao.excluir(id);
 		return true; 
 		
 	} catch (Exception e) {  //Se der erro faz isso 
 		System.out.println("Erro ao controller ao Excluir produto Produto.");
 		e.printStackTrace();
 		return false; 
-	
 }
-}
+} 
 
-public boolean alterar (Object object){ //método para cadastrar produto 
+public void alterar (Produto produto){ //método para cadastrar produto 
 
 try {  
 	GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
 
-dao.alterar(object);
+	if (validarId(produto.getId())==false) {
+		JOptionPane.showMessageDialog(null, "Nenhum produto encontrado para o ID"+ produto.getId());
+	return; 
+	}
+	
+	if (dao.alterar(produto)) { 
+		JOptionPane.showMessageDialog(null, "Produto alterado com sucesso.");
+	} else { 
+		JOptionPane.showMessageDialog(null, "Erro ao alterar produto.");
+
+	}
 		
-	return true;
 	
 } catch (Exception e) {  //Se der erro faz isso 
 	System.out.println("Erro ao controller ao Excluir produto Produto.");
 	e.printStackTrace();
-	return false; 
 
 }
 }
+
+private boolean validarId (int id) { 
+	
+	try { 
+		GenericDAO dao = new ProdutoDAOImpl(); //Interface nome new nome da classe que implementou - a diferenca é que nesse caso só posso usar métofos da genericDAO e se quiser usar de tudo coloca produtoDAOIMpl mesmo 
+		
+		Produto produto = (Produto) dao.listarPorId(id);
+		
+		if (produto==null) { 
+			return false; 
+		} else { 
+			return true; 
+		}
+	} catch (Exception e){
+		System.out.println("Erro ao controller ao Excluir produto Produto.");
+		e.printStackTrace();
+		return false; 
+		
+	}
+}
+
+
+
+
+
 }
