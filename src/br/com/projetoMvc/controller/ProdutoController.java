@@ -1,5 +1,7 @@
 package br.com.projetoMvc.controller;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import javax.swing.JOptionPane;
 import br.com.projetoMvc.DAO.GenericDAO;
 import br.com.projetoMvc.DAO.ProdutoDAOImpl;
 import br.com.projetoMvc.model.Produto;
+import br.com.projetoMvc.util.ConnectionFactory;
 
 public class ProdutoController {
 	
@@ -131,7 +134,6 @@ private boolean validarId (int id) {
 		
 	}
 }
-
 
 
 

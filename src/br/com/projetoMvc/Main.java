@@ -112,7 +112,8 @@ public class Main {
 				produtoEditado.setDescricao(novaDescricao);
 				
 				controller.alterar(produtoEditado);
-				break; 
+				break;
+				
 				
 			case 6: 
 				JOptionPane.showMessageDialog(null, "Sistema finalizado!");
