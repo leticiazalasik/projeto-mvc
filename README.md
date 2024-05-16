@@ -20,6 +20,3 @@ Repositório criado com o objetivo de praticar a conexão JAVA com banco de dado
 Esse projeto foi criado utilizando as tecnologias:
 ### :small_blue_diamond: JAVA - Eclipse
 ### :small_blue_diamond: SQL - Postgres
-
-##
-:construction: Repositório em andamento. 
